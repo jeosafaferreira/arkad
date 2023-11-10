@@ -35,7 +35,7 @@ export default function Carteira() {
                             </div>
                             <div className="row card-no">
                                 <p>5244</p>
-                                <p>2150</p>
+                                <p>2153</p>
                                 <p>8252</p>
                                 <p>6420</p>
                             </div>
