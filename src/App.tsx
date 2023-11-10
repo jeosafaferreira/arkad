@@ -238,27 +238,6 @@ export default function App() {
                 </aside>
 
 <<<<<<< HEAD
-                <Routes>
-                    <Route path="/" element={<Dashboard />} />
-                    <Route path="/carteira" element={<Carteira />} />
-                    <Route path="/transacoes" element={<Transacoes />} />
-                    <Route path="/arkadplus" element={<ArkadPlus />} />
-                    <Route path="/suporte" element={<Suporte />} />
-                </Routes>
-                <footer className="main-footer">
-                    <strong>
-                        Copyright &copy; 2023 <a href="#">ARKAD</a>. &nbsp;
-                    </strong>
-                    All rights reserved.
-                    <div className="float-right d-none d-sm-inline-block">
-                        <b>Version</b> 0.0.1
-                    </div>
-                </footer>
-                <aside className="control-sidebar control-sidebar-dark">Control sidebar content goes here</aside>
-            </div>
-        </BrowserRouter>
-    );
-=======
   return (
     <>
       <div>
@@ -283,5 +262,26 @@ export default function App() {
       </p>
     </>
   )
->>>>>>> d58d1ff (testednv)
+=======
+                <Routes>
+                    <Route path="/" element={<Dashboard />} />
+                    <Route path="/carteira" element={<Carteira />} />
+                    <Route path="/transacoes" element={<Transacoes />} />
+                    <Route path="/arkadplus" element={<ArkadPlus />} />
+                    <Route path="/suporte" element={<Suporte />} />
+                </Routes>
+                <footer className="main-footer">
+                    <strong>
+                        Copyright &copy; 2023 <a href="#">ARKAD</a>. &nbsp;
+                    </strong>
+                    All rights reserved.
+                    <div className="float-right d-none d-sm-inline-block">
+                        <b>Version</b> 0.0.1
+                    </div>
+                </footer>
+                <aside className="control-sidebar control-sidebar-dark">Control sidebar content goes here</aside>
+            </div>
+        </BrowserRouter>
+    );
+>>>>>>> main
 }
