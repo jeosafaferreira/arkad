@@ -190,13 +190,13 @@ export default function App() {
                             <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                                 {/* Add icons to the links using the .nav-icon className with font-awesome or any other icon font library */}
                                 <li className="nav-item">
-                                    <NavLink to="/" className={({ isActive }) => isActive ? "nav-link active": "nav-link"}>
+                                    <NavLink to="/" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
                                         <i className="nav-icon fas fa-tachometer-alt"></i>
                                         <p>Dashboard</p>
                                     </NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink to="/carteira" className={({ isActive }) => isActive ? "nav-link active": "nav-link"}>
+                                    <NavLink to="/carteira" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
                                         <i className="nav-icon fas fa-th"></i>
                                         <p>
                                             Carteira
@@ -236,7 +236,7 @@ export default function App() {
                     </div>
                     {/* .sidebar */}
                 </aside>
-            </div>
+
                 <Routes>
                     <Route path="/" element={<Dashboard />} />
                     <Route path="/carteira" element={<Carteira />} />
@@ -244,16 +244,17 @@ export default function App() {
                     <Route path="/arkadplus" element={<ArkadPlus />} />
                     <Route path="/suporte" element={<Suporte />} />
                 </Routes>
-            <footer className="main-footer">
-                <strong>
-                    Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.
-                </strong>
-                All rights reserved.
-                <div className="float-right d-none d-sm-inline-block">
-                    <b>Version</b> 3.2.0
-                </div>
-            </footer>
-            <aside className="control-sidebar control-sidebar-dark">Control sidebar content goes here</aside>
+                <footer className="main-footer">
+                    <strong>
+                        Copyright &copy; 2023 <a href="#">ARKAD</a>. &nbsp;
+                    </strong>
+                    All rights reserved.
+                    <div className="float-right d-none d-sm-inline-block">
+                        <b>Version</b> 0.0.1
+                    </div>
+                </footer>
+                <aside className="control-sidebar control-sidebar-dark">Control sidebar content goes here</aside>
+            </div>
         </BrowserRouter>
     );
 }
