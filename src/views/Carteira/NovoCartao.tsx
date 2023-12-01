@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./NovoCartao.css";
+import { AlignHorizontally } from "iconsax-react";
 export default function NovoCartao() {
     const navigate = useNavigate();
     const [nome, setNome] = useState("");
@@ -58,7 +59,7 @@ export default function NovoCartao() {
                 {/* Main content */}
                 <section className="content">
                     {/* Default box */}
-                    <div className="card card-primary" style={{ height: 410 }}>
+                    <div className="card card-primary" style={{ height: 500 }}>
                         <div className="card-header"></div>
                         <div className="card-body" style={{ color: "black", display: "flex", flexDirection: "column" }}>
                             <div className="form-group">
@@ -87,9 +88,11 @@ export default function NovoCartao() {
                             </div>
                         </div>
                         <div className="card-footer">
-                            <button className="btn btn-primary" onClick={cadastrarCartao}>
-                                Cadastrar
-                            </button>
+                            <div className="form-group">
+                                <button className="btn btn-primary" onClick={cadastrarCartao}>
+                                    Cadastrar
+                                </button>
+                            </div>
                         </div>
                     </div>
                     {/* /.card */}
