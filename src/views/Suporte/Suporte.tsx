@@ -1,7 +1,5 @@
 import './Suporte.css'
 import InputMask from 'react-input-mask';
-import email_icon from './Suporte_Icon/email_icon.png'
-import phone_icon from './Suporte_Icon/phone_icon.png'
 import { Call, Sms } from 'iconsax-react';
 
 export default function Suporte(){
