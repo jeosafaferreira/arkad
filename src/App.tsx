@@ -5,6 +5,7 @@ import ArkadPlus from "./views/ArkadPlus/ArkadPlus";
 import Transacoes from "./views/Transacoes/Transacoes";
 import Suporte from "./views/Suporte/Suporte";
 import Login from "./views/Login/Login";
+import Inscrever from "./views/Inscrever-se/Inscrever";
 
 export default function App() {
     return (
@@ -240,6 +241,15 @@ export default function App() {
                                         </p>
                                     </NavLink>
                                 </li>
+                                <li className="nav-item">
+                                    <NavLink to="/inscrever" className="nav-link">
+                                        <i className="nav-icon fas fa-th"></i>
+                                        <p>
+                                            Inscreva-se
+                                            <span className="right badge badge-danger">New</span>
+                                        </p>
+                                    </NavLink>
+                                </li>
                             </ul>
                         </nav>
                         {/* .sidebar-menu */}
@@ -254,6 +264,7 @@ export default function App() {
                     <Route path="/arkadplus" element={<ArkadPlus />} />
                     <Route path="/suporte" element={<Suporte />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/inscrever" element={<Inscrever />}  />
                 </Routes>
                 <footer className="main-footer">
                     <strong>
