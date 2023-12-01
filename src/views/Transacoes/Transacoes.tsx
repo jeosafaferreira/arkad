@@ -1,5 +1,8 @@
+import "./Transacoes.css";
+import TopBar from "../Components/TopBar";
+import SideBar from "../Components/SideBar";
+import Footer from "../Components/Footer";
 import { useState } from 'react';
-import './Transacoes.css';
 interface Transaction {
     name: string;
     type: string;
@@ -46,16 +49,16 @@ export default function Transacoes() {
             completed: true,
         },
         {
-            name: 'Spotify',
-            type: 'Entrenimento',
-            date: '11/07/2023',
-            amount: 14.00,
+            name: "Spotify",
+            type: "Entrenimento",
+            date: "11/07/2023",
+            amount: 14.0,
             completed: true,
         },
         {
-            name: 'Vivara',
-            type: 'Compras',
-            date: '19/08/2023',
+            name: "Vivara",
+            type: "Compras",
+            date: "19/08/2023",
             amount: 500.75,
             completed: true,
         },
@@ -76,31 +79,30 @@ export default function Transacoes() {
     };
 
     return (
-        <div className="content-wrapper">
-            <section className="content-header">
-                <div className="container-fluid">
-                    <div className="row mb-2">
-                        <div className="col-sm-6">
-                            <h1>Transações</h1>
-                        </div>
-                        <div className="col-sm-6">
-                            <ol className="breadcrumb float-sm-right">
-                                <li className="breadcrumb-item">
-                                    <a href="#">Home</a>
-                                </li>
-                                <li className="breadcrumb-item active">Carteira</li>
-                            </ol>
+        <>
+            <TopBar />
+            <SideBar />
+            <div className="content-wrapper">
+                <section className="content-header">
+                    <div className="container-fluid">
+                        <div className="row mb-2">
+                            <div className="col-sm-6">
+                                <h1>Transações</h1>
+                            </div>
+                            <div className="col-sm-6">
+                                <ol className="breadcrumb float-sm-right">
+                                    <li className="breadcrumb-item">
+                                        <a href="#">Home</a>
+                                    </li>
+                                    <li className="breadcrumb-item active">Transações</li>
+                                </ol>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section className="content">
-                <div className="card">
-                    <div className="card-header">
-                        <h3 className="card-title">Lista de Transações</h3>
-                    </div>
-                    <div className="card-body">
+                <section className="content">
+                    <div className="card-body" style={{ display: "flex", flexDirection: "column" }}>
                         {transactions.map((transaction, index) => (
                             <div key={index} className="transaction">
                                 <p>
@@ -114,19 +116,16 @@ export default function Transacoes() {
                                     <span className="transaction-info pagamento">R$ {transaction.amount}</span>
                                 </p>
                                 <div>
-                                    <button
-                                        className={`btn btn-${transaction.completed ? 'success' : 'secondary'}`}
-                                        onClick={() => handleTransactionToggle(index)}
-                                    >
-                                        {transaction.completed ? 'Completo' : 'Pendente'}
+                                    <button className={`btn btn-${transaction.completed ? "success" : "secondary"}`} onClick={() => handleTransactionToggle(index)}>
+                                        {transaction.completed ? "Completo" : "Pendente"}
                                     </button>
                                 </div>
                             </div>
                         ))}
                     </div>
-                    <div className="card-footer">Footer</div>
-                </div>
-            </section>
-        </div>
+                </section>
+            </div>
+            <Footer />
+        </>
     );
 }

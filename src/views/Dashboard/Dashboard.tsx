@@ -1,6 +1,12 @@
+import Footer from "../Components/Footer";
+import SideBar from "../Components/SideBar";
+import TopBar from "../Components/TopBar";
+
 export default function Dashboard() {
     return (
         <div className="wrapper">
+            <TopBar />
+            <SideBar />
             {/* Content Wrapper. Contains page content */}
             <div className="content-wrapper">
                 {/* Content Header (Page header) */}
@@ -28,40 +34,38 @@ export default function Dashboard() {
                 {/* .content-header  Main content */}
                 <section className="content">
                     <div className="container-fluid">
-                         {/* Small boxes (Stat box) */}
+                        {/* Small boxes (Stat box) */}
                         <div className="row">
                             <div className="col-lg-3 col-6">
-                                 {/* small box */}
+                                {/* small box */}
                                 <div className="small-box bg-info">
                                     <div className="inner">
-                                        <h3>150</h3>
+                                        <h3>1</h3>
 
-                                        <p>New Orders</p>
+                                        <p>Cartão Cadastrado</p>
                                     </div>
                                     <div className="icon">
                                         <i className="ion ion-bag"></i>
                                     </div>
                                     <a href="#" className="small-box-footer">
-                                        More info <i className="fas fa-arrow-circle-right"></i>
+                                        Ver mais <i className="fas fa-arrow-circle-right"></i>
                                     </a>
                                 </div>
                             </div>
-                             {/* ./col */}
+                            {/* ./col */}
                             <div className="col-lg-3 col-6">
-                                 {/* small box */}
+                                {/* small box */}
                                 <div className="small-box bg-success">
                                     <div className="inner">
-                                        <h3>
-                                            53<sup style={{ fontSize: "20px" }}>%</sup>
-                                        </h3>
+                                        <h3>R$0.00</h3>
 
-                                        <p>Bounce Rate</p>
+                                        <p>Total de receitas</p>
                                     </div>
                                     <div className="icon">
                                         <i className="ion ion-stats-bars"></i>
                                     </div>
                                     <a href="#" className="small-box-footer">
-                                        More info <i className="fas fa-arrow-circle-right"></i>
+                                        Ver mais <i className="fas fa-arrow-circle-right"></i>
                                     </a>
                                 </div>
                             </div>
@@ -70,15 +74,15 @@ export default function Dashboard() {
                                 {/* small box */}
                                 <div className="small-box bg-warning">
                                     <div className="inner">
-                                        <h3>44</h3>
+                                        <h3>R$0.00</h3>
 
-                                        <p>User Registrations</p>
+                                        <p>Movimentado esse mês</p>
                                     </div>
                                     <div className="icon">
                                         <i className="ion ion-person-add"></i>
                                     </div>
                                     <a href="#" className="small-box-footer">
-                                        More info <i className="fas fa-arrow-circle-right"></i>
+                                        Ver mais <i className="fas fa-arrow-circle-right"></i>
                                     </a>
                                 </div>
                             </div>
@@ -87,15 +91,15 @@ export default function Dashboard() {
                                 {/* small box */}
                                 <div className="small-box bg-danger">
                                     <div className="inner">
-                                        <h3>65</h3>
+                                        <h3>R$0.00</h3>
 
-                                        <p>Unique Visitors</p>
+                                        <p>Total de despesas</p>
                                     </div>
                                     <div className="icon">
                                         <i className="ion ion-pie-graph"></i>
                                     </div>
                                     <a href="#" className="small-box-footer">
-                                        More info <i className="fas fa-arrow-circle-right"></i>
+                                        Ver mais <i className="fas fa-arrow-circle-right"></i>
                                     </a>
                                 </div>
                             </div>
@@ -108,6 +112,7 @@ export default function Dashboard() {
                 {/* .content */}
             </div>
             {/* .content-wrapper */}
+            <Footer />
         </div>
         //  ./wrapper
     );
