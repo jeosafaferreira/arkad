@@ -1,0 +1,52 @@
+.transaction {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.transaction p {
+    margin-bottom: 10px;
+}
+
+.transaction-label {
+    font-weight: bold;
+    margin-right: 8px;
+
+}
+
+.transaction-info {
+    margin-right: 200px;
+}
+
+.transaction-label.utilizacao {
+    color: #333; /* Cor para Utilização */
+}
+
+.transaction-info.utilizacao {
+    color: #333; /* Cor para Informação de Utilização */
+}
+
+.transaction-label.tipo {
+    color: #101010; /* Cor para Tipo */
+}
+
+.transaction-info.tipo {
+    color: #777; /* Cor para Informação de Tipo */
+}
+
+.transaction-label.data {
+    color: #101010; /* Cor para Data */
+}
+
+.transaction-info.data {
+    color: #777; /* Cor para Informação de Data */
+}
+
+.transaction-label.pagamento {
+    color: #101010; /* Cor para Pagamento */
+}
+
+.transaction-info.pagamento {
+    color: #101010; /* Cor para Informação de Pagamento */
+    
+}
