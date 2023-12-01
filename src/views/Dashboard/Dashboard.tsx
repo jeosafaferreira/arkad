@@ -1,6 +1,12 @@
+import Footer from "../Components/Footer";
+import SideBar from "../Components/SideBar";
+import TopBar from "../Components/TopBar";
+
 export default function Dashboard() {
     return (
         <div className="wrapper">
+            <TopBar />
+            <SideBar />
             {/* Content Wrapper. Contains page content */}
             <div className="content-wrapper">
                 {/* Content Header (Page header) */}
@@ -28,10 +34,10 @@ export default function Dashboard() {
                 {/* .content-header  Main content */}
                 <section className="content">
                     <div className="container-fluid">
-                         {/* Small boxes (Stat box) */}
+                        {/* Small boxes (Stat box) */}
                         <div className="row">
                             <div className="col-lg-3 col-6">
-                                 {/* small box */}
+                                {/* small box */}
                                 <div className="small-box bg-info">
                                     <div className="inner">
                                         <h3>150</h3>
@@ -46,9 +52,9 @@ export default function Dashboard() {
                                     </a>
                                 </div>
                             </div>
-                             {/* ./col */}
+                            {/* ./col */}
                             <div className="col-lg-3 col-6">
-                                 {/* small box */}
+                                {/* small box */}
                                 <div className="small-box bg-success">
                                     <div className="inner">
                                         <h3>
@@ -108,6 +114,7 @@ export default function Dashboard() {
                 {/* .content */}
             </div>
             {/* .content-wrapper */}
+            <Footer />
         </div>
         //  ./wrapper
     );
