@@ -1,8 +1,8 @@
-import { useState } from "react";
 import "./Transacoes.css";
 import TopBar from "../Components/TopBar";
 import SideBar from "../Components/SideBar";
 import Footer from "../Components/Footer";
+import { useState } from 'react';
 interface Transaction {
     name: string;
     type: string;
@@ -14,37 +14,37 @@ interface Transaction {
 export default function Transacoes() {
     const [transactions, setTransactions] = useState<Transaction[]>([
         {
-            name: "Netflix",
-            type: "Entretenimento",
-            date: "01/03/2023",
+            name: 'Netflix',
+            type: 'Entretenimento',
+            date: '01/03/2023',
             amount: 45.99,
             completed: true,
         },
         {
-            name: "Amazon",
-            type: "Entretenimento",
-            date: "02/02/2023",
+            name: 'Amazon',
+            type: 'Entretenimento',
+            date: '02/02/2023',
             amount: 120.75,
             completed: true,
         },
         {
-            name: "Kalzone",
-            type: "Alimentação",
-            date: "20/04/2023",
+            name: 'Kalzone',
+            type: 'Alimentação',
+            date: '20/04/2023',
             amount: 120.75,
             completed: true,
         },
         {
-            name: "Madero",
-            type: "Alimentação",
-            date: "16/05/2023",
+            name: 'Madero',
+            type: 'Alimentação',
+            date: '16/05/2023',
             amount: 120.75,
             completed: true,
         },
         {
-            name: "Americanas",
-            type: "Compras",
-            date: "15/06/2023",
+            name: 'Americanas',
+            type: 'Compras',
+            date: '15/06/2023',
             amount: 120.75,
             completed: true,
         },
@@ -63,9 +63,9 @@ export default function Transacoes() {
             completed: true,
         },
         {
-            name: "Pao-de-Açucar",
-            type: "Compras",
-            date: "27/09/2023",
+            name: 'Pao-de-Açucar',
+            type: 'Compras',
+            date: '27/09/2023',
             amount: 80.75,
             completed: true,
         },
