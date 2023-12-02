@@ -6,7 +6,7 @@ import Transacoes from "./views/Transacoes/Transacoes";
 import Suporte from "./views/Suporte/Suporte";
 import Login from "./views/Login/Login";
 import NovoCartao from "./views/Carteira/NovoCartao";
-import Inscrever from "./views/Inscrever-se/Inscrever";
+import Inscrever from "./views/Inscrever/Inscrever";
 
 export default function App() {
     return (
