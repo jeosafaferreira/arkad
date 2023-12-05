@@ -1,7 +1,5 @@
 import "./Suporte.css";
 import InputMask from "react-input-mask";
-import email_icon from "./Suporte_Icon/email_icon.png";
-import phone_icon from "./Suporte_Icon/phone_icon.png";
 import { Call, Sms } from "iconsax-react";
 import Footer from "../Components/Footer";
 import TopBar from "../Components/TopBar";
@@ -36,9 +34,9 @@ export default function Suporte() {
                 {/* Main content */}
                 <section className="content">
                     {/* Default box */}
-                    <div className="card">
+                    <div className="card" style={{width : 'auto' , height : 'auto'}}>
                         <div className="card-header">
-                            <h3 className="card-title">Title</h3>
+                            <h3 className="card-title">Suporte</h3>
 
                             <div className="card-tools">
                                 <button type="button" className="btn btn-tool" data-card-widget="collapse" title="Collapse">

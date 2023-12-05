@@ -4,9 +4,8 @@ import Carteira from "./views/Carteira/Carteira";
 import ArkadPlus from "./views/ArkadPlus/ArkadPlus";
 import Transacoes from "./views/Transacoes/Transacoes";
 import Suporte from "./views/Suporte/Suporte";
-import Login from "./views/Login/Login";
 import NovoCartao from "./views/Carteira/NovoCartao";
-import Inscrever from "./views/Inscrever-se/Inscrever";
+import Inscrever from "./views/Inscrever/Inscrever.jsx";
 
 export default function App() {
     return (
@@ -19,7 +18,6 @@ export default function App() {
                     <Route path="/transacoes" element={<Transacoes />} />
                     <Route path="/arkadplus" element={<ArkadPlus />} />
                     <Route path="/suporte" element={<Suporte />} />
-                    <Route path="/login" element={<Login />} />
                     <Route path="/inscrever" element={<Inscrever />}  />
                 </Routes>
             </div>

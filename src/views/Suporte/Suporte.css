@@ -1,16 +1,20 @@
-@import url("https://fonts.googleapis.com/css?family=Poppins:400,700,900");
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,700,900');
 
-.content {
+.card-title{
+    color: black;
+    text-align: center;
+}
+.content{
     background-color: #f7f9fc;
+    font-family: 'Poppins';
 }
 
-.card-body {
-    /*background-color: #000000;*/
+.card-body{
     display: flex;
-    background-color: #f7f9fc;
+    background-color: #F7F9FC
 }
 
-.forms {
+.forms{
     background-color: white;
     box-sizing: border-box;
     display: flex;
@@ -20,17 +24,17 @@
     padding: 30px;
     width: 65%;
     border-radius: 5px;
+    position: relative;
 }
 
-.Main-Card {
+.Main-Card{
     background-color: white;
     display: flex;
-    font-family: "Poppins";
     width: 500px;
-    border-radius: 5px;
+    border-radius: 5px; 
 }
 
-.forms-1 {
+.forms-1{
     display: flex;
     flex-direction: column;
     width: fit-content;
@@ -39,11 +43,8 @@
     border-color: brown;*/
 }
 
-#nomeCompleto {
-    /*border-radius: 30px;*/
-}
 
-.forms-3 {
+.forms-3{
     display: flex;
     flex-direction: column;
     width: fit-content;
@@ -53,7 +54,7 @@
     border-color: blueviolet;*/
 }
 
-.forms-2 {
+.forms-2{
     margin-left: 20px;
     display: flex;
     flex-direction: column;
@@ -62,7 +63,7 @@
     border-width: 2px;
     border-color: blue;*/
 }
-.forms-4 {
+.forms-4{
     margin-top: 30px;
     margin-bottom: 10px;
     display: flex;
@@ -71,15 +72,16 @@
     /*border-style: solid;
     border-width: 2px;
     border-color: yellow;*/
+
 }
-.final-forms {
+.final-forms{
     margin-top: 40px;
     display: flex;
     flex-direction: column;
     width: fit-content;
 }
 
-#mensagem {
+#mensagem{
     width: 500px;
     padding: 10px;
     resize: none;
@@ -95,7 +97,7 @@
 #nomeCompleto:focus,
 #telefone:focus,
 #email:focus,
-#assunto:focus {
+#assunto:focus{
     border-color: #000000;
     outline: none;
 }
@@ -103,11 +105,11 @@
 #nomeCompleto,
 #telefone,
 #email,
-#assunto {
+#assunto{
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-#btn-enviar {
+#btn-enviar{
     margin-top: 20px;
     border-radius: 5px;
     width: 170px;
@@ -118,22 +120,25 @@
     border-color: #5978ed;
 }
 
-.button-enviar {
+.button-enviar{
     width: fit-content;
 }
 
-.contatos {
+.contatos{
     display: flex;
     flex-direction: column;
-    /*background-color: red;*/
-    width: 40%;
-    margin-left: 20px;
+    width: 35%;
+    margin-left: 2%;
     border-radius: 5px;
-    height: fit-content;
+    height: 30%;
     padding: 30px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top:45px;   
 }
 
-.email-contato {
+.email-contato{
     display: flex;
     margin-bottom: 10px;
     border-radius: 5px;
@@ -143,38 +148,40 @@
     gap: 2rem;
 }
 
-.telefone-contato {
+.telefone-contato{
     margin-top: 10px;
     border-radius: 5px;
     background-color: white;
-    display: flex;
+    display: flex;;
     align-items: center;
     justify-content: flex-start;
     gap: 2rem;
 }
 
-.text-email {
+.text-email{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     text-align: center;
+    color: #000000;
 }
 
-.text-telefone {
+.text-telefone{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     text-align: center;
+    color: #000000;
 }
 
 .phone_icon,
-.email_icon {
+.email_icon{
     size: 8px;
     margin-left: 1rem;
     color: #5978ed;
 }
 
 .phone_arkad,
-.email_arkad {
+.email_arkad{
     opacity: 0.5;
 }
