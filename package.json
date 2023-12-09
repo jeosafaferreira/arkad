@@ -13,6 +13,7 @@
     "axios": "^1.6.2",
     "iconsax-react": "^0.0.8",
     "react": "^18.2.0",
+    "react-currency-input-field": "^3.6.12",
     "react-dom": "^18.2.0",
     "react-input-mask": "^2.0.4",
     "react-router-dom": "^6.17.0"

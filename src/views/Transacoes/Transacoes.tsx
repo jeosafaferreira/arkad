@@ -1,143 +1,240 @@
 import React, { useState } from 'react';
+import CurrencyInput from 'react-currency-input-field';
 import TopBar from '../Components/TopBar';
 import SideBar from '../Components/SideBar';
 import Footer from '../Components/Footer';
-import './Transacoes.css';
-interface Transaction {
-  name: string;
-  type: string;
-  date: string;
-  amount: number;
-  completed: boolean;
+
+interface TransactionFormProps {
+  onSubmit: (formData: FormData) => void;
 }
 
-const TransactionItem: React.FC<{ transaction: Transaction; onToggle: () => void }> = ({ transaction, onToggle }) => {
-  return (
-    <div className="transaction">
-      <p>
-        <span className="transaction-label utilizacao">Utilização:</span>
-        <span className="transaction-info utilizacao">{transaction.name}</span>
-        <span className="transaction-label tipo">Tipo:</span>
-        <span className="transaction-info tipo">{transaction.type}</span>
-        <span className="transaction-label data">Data:</span>
-        <span className="transaction-info data">{transaction.date}</span>
-        <span className="transaction-label pagamento">Pagamento:</span>
-        <span className="transaction-info pagamento">R$ {transaction.amount}</span>
-      </p>
-      <div>
-        <button className={`btn btn-${transaction.completed ? 'success' : 'secondary'}`} onClick={onToggle}>
-          {transaction.completed ? 'Completo' : 'Pendente'}
-        </button>
-      </div>
-    </div>
-  );
-};
+interface FormData {
+  email: string;
+  senha: string;
+  verificar: boolean;
+  tipo: 'debito' | 'credito';
+  plataformaUtilizacao: string;
+  data: string;
+  valor: string;
+  numeroCartao: string;
+  referente: string;
+}
 
-const TransactionList: React.FC<{ transactions: Transaction[]; onToggle: (index: number) => void }> = ({ transactions, onToggle }) => {
-  return (
-    <div className="card-body" style={{ display: 'flex', flexDirection: 'column' }}>
-      {transactions.map((transaction, index) => (
-        <TransactionItem key={index} transaction={transaction} onToggle={() => onToggle(index)} />
-      ))}
-    </div>
-  );
-};
-
-const Transacoes: React.FC = () => {
-  const [transactions, setTransactions] = useState<Transaction[]>([
-    // ... transações existentes ...
-  ]);
-
-  const [newTransaction, setNewTransaction] = useState<Transaction>({
-    name: '',
-    type: '',
-    date: '',
-    amount: 0,
-    completed: false,
+const TransactionForm: React.FC<TransactionFormProps> = ({ onSubmit }) => {
+  const [formData, setFormData] = useState<FormData>({
+    email: '',
+    senha: '',
+    verificar: false,
+    tipo: 'debito',
+    plataformaUtilizacao: '',
+    data: '',
+    valor: '',
+    numeroCartao: '',
+    referente: '',
   });
 
-  const handleAddTransaction = () => {
-    setTransactions((prevTransactions) => [...prevTransactions, newTransaction]);
-    setNewTransaction({
-      name: '',
-      type: '',
-      date: '',
-      amount: 0,
-      completed: false,
-    });
-  };
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value, type } = event.target;
 
-  const handleTransactionToggle = (index: number) => {
-    const updatedTransactions = [...transactions];
-    updatedTransactions[index].completed = !updatedTransactions[index].completed;
-    setTransactions(updatedTransactions);
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setNewTransaction((prevTransaction) => ({
-      ...prevTransaction,
-      [name]: value,
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: type === 'checkbox' ? (event.target as HTMLInputElement).checked : value,
     }));
   };
 
+  const handleTipoChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      tipo: event.target.value as 'debito' | 'credito',
+    }));
+  };
+
+  const handleDateChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const formattedDate = event.target.value;
+    setFormData((prevData) => ({
+      ...prevData,
+      data: formattedDate,
+    }));
+  };
+
+  const handleValorChange = (
+    value: string | undefined
+  ) => {
+    const formattedValue = value ? `R$ ${value}` : '';
+    setFormData((prevData) => ({
+      ...prevData,
+      valor: formattedValue,
+    }));
+  };
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+
+    const requiredFields = ['email', 'senha', 'tipo', 'plataformaUtilizacao', 'data', 'valor', 'numeroCartao'];
+    const isFormValid = requiredFields.every(field => formData[field as keyof FormData]);
+
+    if (isFormValid) {
+      onSubmit(formData);
+    } else {
+      alert('Por favor, preencha todos os campos obrigatórios.');
+    }
+  };
+
   return (
-    <>
+    <div>
       <TopBar />
       <SideBar />
       <div className="content-wrapper">
-        <section className="content-header">
+        <div className="content-header">
           <div className="container-fluid">
             <div className="row mb-2">
               <div className="col-sm-6">
-                <h1>Transações</h1>
-              </div>
-              <div className="col-sm-6">
-                <ol className="breadcrumb float-sm-right">
-                  <li className="breadcrumb-item">
-                    <a href="#">Home</a>
-                  </li>
-                  <li className="breadcrumb-item active">Transações</li>
-                </ol>
+                <h1 className="m-0 text-dark">Formulário de Transação</h1>
               </div>
             </div>
           </div>
-        </section>
+        </div>
 
         <section className="content">
-          {/* Formulário para adicionar transação */}
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              handleAddTransaction();
-            }}
-          >
-            <label>
-              Utilização:
-              <input type="text" name="name" value={newTransaction.name} onChange={handleInputChange} required />
-            </label>
-            <label>
-              Tipo:
-              <input type="text" name="type" value={newTransaction.type} onChange={handleInputChange} required />
-            </label>
-            <label>
-              Data:
-              <input type="text" name="date" value={newTransaction.date} onChange={handleInputChange} required />
-            </label>
-            <label>
-              Valor:
-              <input type="number" name="amount" value={newTransaction.amount} onChange={handleInputChange} required />
-            </label>
-            <button type="submit">Adicionar Transação</button>
-          </form>
+          <div className="container-fluid">
+            <div className="card card-primary">
+              <div className="card-header">
+                <h3 className="card-title">Detalhes da Transação</h3>
+              </div>
 
-          {/* Lista de transações */}
-          <TransactionList transactions={transactions} onToggle={handleTransactionToggle} />
+              <form onSubmit={handleSubmit}>
+                <div className="card-body">
+                  <div className="form-group">
+                    <label htmlFor="tipo">Tipo de Transação</label>
+                    <select
+                      className="form-control"
+                      id="tipo"
+                      name="tipo"
+                      value={formData.tipo}
+                      onChange={handleTipoChange}
+                      style={{ maxWidth: '300px' }}
+                      required
+                    >
+                      <option value="debito">Débito</option>
+                      <option value="credito">Crédito</option>
+                    </select>
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="plataformaUtilizacao">Plataforma de Utilização</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="plataformaUtilizacao"
+                      name="plataformaUtilizacao"
+                      placeholder="Informe a plataforma de utilização"
+                      value={formData.plataformaUtilizacao}
+                      onChange={handleInputChange}
+                      style={{ maxWidth: '300px' }}  
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="data">Data da Transação</label>
+                    <input
+                      type="date"
+                      className="form-control"
+                      id="data"
+                      name="data"
+                      value={formData.data}
+                      onChange={handleDateChange}
+                      style={{ maxWidth: '300px' }}
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="valor">Valor da Transação</label>
+                    <CurrencyInput
+                      prefix="R$ "
+                      allowDecimals
+                      decimalScale={2}
+                      groupSeparator="."
+                      decimalSeparator=","
+                      className="form-control"
+                      id="valor"
+                      name="valor"
+                      placeholder="Informe o valor da transação"
+                      value={formData.valor.replace('R$ ', '')}
+                      onValueChange={handleValorChange}
+                      style={{ maxWidth: '300px' }}
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="numeroCartao">Número do Cartão</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="numeroCartao"
+                      name="numeroCartao"
+                      placeholder="Informe o número do cartão"
+                      value={formData.numeroCartao}
+                      onChange={handleInputChange}
+                      style={{ maxWidth: '300px' }}
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="referente">Referente</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="referente"
+                      name="referente"
+                      placeholder="Informe o referente"
+                      value={formData.referente}
+                      onChange={handleInputChange}
+                      style={{ maxWidth: '300px' }}
+                      inputMode="text"
+                    />
+                    <small className="form-text text-muted">
+                      Caso queira adicionar o referente, isso ajudará na organização das suas transações.
+                    </small>
+                  </div>
+
+                  <div className="form-check">
+                    <input
+                      type="checkbox"
+                      className="form-check-input"
+                      id="verificar"
+                      name="verificar"
+                      checked={formData.verificar}
+                      onChange={handleInputChange}
+                    />
+                    <label className="form-check-label" htmlFor="verificar">
+                      Marque-me
+                    </label>
+                  </div>
+                </div>
+
+                <div className="card-footer">
+                  <button type="submit" className="btn btn-primary">
+                    Enviar
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         </section>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 
-export default Transacoes;
+export default TransactionForm;
