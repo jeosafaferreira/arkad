@@ -8,6 +8,7 @@ import NovoCartao from "./views/Carteira/NovoCartao";
 import Inscrever from "./views/Inscrever/Inscrever.jsx";
 import CardCredit from "./views/Carteira/CardCredit/CardCredit.jsx";
 import CardCredit2 from "./views/Carteira/CardCredit/CardCredit2.jsx";
+import Login2 from "./views/Login/login2.js";
 
 export default function App() {
     return (
@@ -21,6 +22,7 @@ export default function App() {
                     <Route path="/arkadplus" element={<ArkadPlus />} />
                     <Route path="/suporte" element={<Suporte />} />
                     <Route path="/inscrever" element={<Inscrever />} />
+                    <Route path="/login" element={<Login2 />} />
                 </Routes>
             </div>
         </BrowserRouter>
