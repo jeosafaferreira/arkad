@@ -1,8 +1,8 @@
-import './login.css';
+import "./login.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-export default function Login2(){
+export default function Login2() {
     const [txtEmail, setTxtEmail] = useState("");
     const [txtSenha, setTxtSenha] = useState("");
     const navigate = useNavigate();
@@ -18,7 +18,7 @@ export default function Login2(){
                 if (response.data.authorized) {
                     localStorage.setItem("usuario_id", response.data.usuario_id);
                     localStorage.setItem("usuario_nome", response.data.nome);
-                    navigate("/");
+                    navigate("/dashboard");
                 } else {
                     alert("Combinação de login e senha inválida.");
                 }
@@ -29,38 +29,44 @@ export default function Login2(){
     }
 
     return (
-        <div className='card'>
-            <form style={{width : '46%'}}>
-                    <div className='forms-google'>
-                        <div className='log-google'>
-                            <span>Faça login com <strong>Google</strong></span>
-                        </div>
+        <div style={{ display: "grid", justifyItems: "center", width: "100%", paddingTop: "150px" }}>
+            <div style={{ width: "400px" }}>
+                <div className="forms-google">
+                    <div className="log-google">
+                        <span>
+                            Faça login com <strong>Google</strong>
+                        </span>
                     </div>
-                    <div>
-                        <div className='span-email'>
-                            <hr></hr>
-                            <span>Ou faça login com seu <strong>email</strong></span>
-                            <hr></hr>
-                        </div>
+                </div>
+                <div>
+                    <div className="span-email">
+                        <hr></hr>
+                        <span>
+                            Ou faça login com seu <strong>email</strong>
+                        </span>
+                        <hr></hr>
                     </div>
-                    <div className="card-body">
+                </div>
+                <div className="card-body">
                     <div className="form-group">
-                            <label htmlFor="InputEmail1">Email</label>
-                            <input type="email" className="form-control" id="InputEmail1" onChange={(e) => setTxtEmail(e.target.value)} placeholder="exemplo@ex.com" />
+                        <label htmlFor="InputEmail1">Email</label>
+                        <input type="email" className="form-control" id="InputEmail1" onChange={(e) => setTxtEmail(e.target.value)} placeholder="exemplo@ex.com" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="InputPassword1">Senha</label>
                         <input type="password" className="form-control" id="InputPassword1" onChange={(e) => setTxtSenha(e.target.value)} placeholder="Senha" />
                     </div>
+                </div>
+                <div className="card-footer">
+                    <button type="submit" className="btn_entrar" onClick={logar}>
+                        Entrar
+                    </button>
+                    <div className="link_new_user">
+                        <span className="novo-por-aqui">Ainda não possui uma conta?</span>
+                        <a href="/inscrever">Cadastre-se</a>
                     </div>
-                    <div className="card-footer">
-                    <button type="submit" className="btn_entrar" onClick={logar}>Entrar</button>
-                    <div className='link_new_user'>
-                        <span className='novo-por-aqui'>Ainda não possui uma conta?</span>
-                        <a href='/inscrever'>Cadastre-se</a>
-                    </div>
-                    </div>
-            </form>
+                </div>
+            </div>
         </div>
-    )
+    );
 }

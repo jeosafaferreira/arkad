@@ -1,4 +1,7 @@
 import "./Suporte.css";
+import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import InputMask from "react-input-mask";
 import { Call, Sms } from "iconsax-react";
 import Footer from "../Components/Footer";
@@ -6,6 +9,27 @@ import TopBar from "../Components/TopBar";
 import SideBar from "../Components/SideBar";
 
 export default function Suporte() {
+    const navigate = useNavigate();
+    const [txtNome, setTxtNome] = useState("");
+    const [txtEmail, setTxtEmail] = useState("");
+    const [txtTelefone, setTxtTelefone] = useState("");
+    const [txtAssunto, setTxtAssunto] = useState("");
+    const [txtMensagem, setTxtMensagem] = useState("");
+
+    function enviarEmail() {
+        axios
+            .post("http://54.207.8.179:8081/email", {
+                nome: txtNome,
+                email: txtEmail,
+                telefone: txtTelefone,
+                assunto: txtAssunto,
+                mensagem: txtMensagem,
+            })
+            .then(function (response) {
+                alert(response.data);
+            });
+        navigate("/");
+    }
     return (
         <>
             <TopBar />
@@ -23,7 +47,7 @@ export default function Suporte() {
                                     <li className="breadcrumb-item">
                                         <a href="#">Home</a>
                                     </li>
-                                    <li className="breadcrumb-item active">Carteira</li>
+                                    <li className="breadcrumb-item active">Suporte</li>
                                 </ol>
                             </div>
                         </div>
@@ -34,7 +58,7 @@ export default function Suporte() {
                 {/* Main content */}
                 <section className="content">
                     {/* Default box */}
-                    <div className="card" style={{width : 'auto' , height : 'auto'}}>
+                    <div className="card" style={{ width: "auto", height: "auto" }}>
                         <div className="card-header">
                             <h3 className="card-title">Suporte</h3>
 
@@ -52,27 +76,27 @@ export default function Suporte() {
                                 <div className="Main-Card">
                                     <div className="forms-1">
                                         <label htmlFor="nomeCompleto">Nome Completo</label>
-                                        <input type="text" id="nomeCompleto" name="nomeCompleto" placeholder="Nome Completo" />
+                                        <input type="text" id="nomeCompleto" onChange={(e) => setTxtNome(e.target.value)} name="nomeCompleto" placeholder="Nome Completo" />
                                         <div className="forms-3">
                                             <label htmlFor="telefone">Telefone</label>
-                                            <InputMask mask="+99 (99) 9 9999 9999" maskChar="_" id="telefone" name="telefone" placeholder="+55 (__) 9 ____-____" />
+                                            <InputMask mask="+99 (99) 9 9999 9999" onChange={(e) => setTxtTelefone(e.target.value)} maskChar="_" id="telefone" name="telefone" placeholder="+55 (__) 9 ____-____" />
                                         </div>
                                     </div>
                                     <div className="forms-2">
                                         <label htmlFor="email">Email</label>
-                                        <input type="email" id="email" name="email" placeholder="Email"></input>
+                                        <input type="email" id="email" name="email" placeholder="Email" onChange={(e) => setTxtEmail(e.target.value)} />
                                         <div className="forms-4">
                                             <label htmlFor="assunto">Assunto</label>
-                                            <input type="text" id="assunto" name="assunto" placeholder="Assunto"></input>
+                                            <input type="text" id="assunto" name="assunto" onChange={(e) => setTxtAssunto(e.target.value)} placeholder="Assunto" />
                                         </div>
                                     </div>
                                 </div>
                                 <div className="final-forms">
                                     <label htmlFor="mensagem">Mensagem</label>
-                                    <textarea id="mensagem" name="mensagem" placeholder="Digite sua mensagem" rows={10}></textarea>
+                                    <textarea id="mensagem" name="mensagem" onChange={(e) => setTxtMensagem(e.target.value)} placeholder="Digite sua mensagem" rows={10}></textarea>
                                 </div>
                                 <div className="button-enviar">
-                                    <button id="btn-enviar" name="btn-enviar">
+                                    <button id="btn-enviar" name="btn-enviar" onClick={enviarEmail}>
                                         Enviar
                                     </button>
                                 </div>
@@ -99,8 +123,6 @@ export default function Suporte() {
                             </div>
                         </div>
                         {/* /.card-body */}
-                        <div className="card-footer">Footer</div>
-                        {/* /.card-footer */}
                     </div>
                     {/* /.card */}
                 </section>

@@ -6,12 +6,28 @@ import axios from "axios";
 
 import "./Carteira.css";
 import { Link } from "react-router-dom";
+import Cards from "react-credit-cards-2";
 export default function Carteira() {
     const [cartoes, setCartoes] = useState([]);
+    const [showButton, setShowButton] = useState(null);
+
     const getCartoes = async () => {
-        const res = await axios.get(`http://localhost:8081/cartoes/${localStorage.getItem("usuario_id")}`);
+        const res = await axios.get(`http://54.207.8.179:8081/cartoes/${localStorage.getItem("usuario_id")}`);
         console.log(res.data);
         setCartoes(res.data);
+    };
+
+    const [focusedCard, setFocusedCard] = useState(null);
+
+    const deleteCard = (id) => {
+        axios
+            .delete(`http://54.207.8.179:8081/cartoes/${id}`)
+            .then(() => {
+                setCartoes((prevCards) => prevCards.filter((cartao) => cartao.cartao_id !== id));
+            })
+            .catch((error) => {
+                console.error("There was an error!", error);
+            });
     };
 
     useEffect(() => {
@@ -56,46 +72,43 @@ export default function Carteira() {
                 {/* Main content */}
                 <section className="content">
                     {/* /.card */}
-                    <div style={{ display: "flex" }}>
-                        {cartoes.map((cartao) => (
-                            <div className="card" style={{ marginRight: 10 }}>
-                                <div className="card-inner">
-                                    <div className="front">
-                                        <img src="https://i.ibb.co/PYss3yv/map.png" className="map-img"></img>
-                                        <div className="row">
-                                            <img src="https://i.ibb.co/G9pDnYJ/chip.png" width="60px"></img>
-                                            <img src="https://i.ibb.co/WHZ3nRJ/visa.png" width="60px"></img>
-                                        </div>
-                                        <div className="row card-no">
-                                            <p>{cartao.numero}</p>
-                                        </div>
-                                        <div className="row card-holder">
-                                            <p>{cartao.nome_impresso}</p>
-                                            <p>{cartao.vencimento}</p>
-                                        </div>
-                                    </div>
-                                    <div className="back">
-                                        <img src="https://i.ibb.co/PYss3yv/map.png" className="map-img"></img>
-                                        <div className="bar"></div>
-                                        <div className="row card-cvv">
-                                            <div>
-                                                <img src="https://i.ibb.co/S6JG8px/pattern.png"></img>
-                                            </div>
-                                            <p></p>
-                                        </div>
-                                        <div className="row card-text">
-                                            <p></p>
-                                        </div>
-                                        <div className="row signature">
-                                            <p>CUSTOMER SIGNATURE</p>
-                                            <img src="https://i.ibb.co/WHZ3nRJ/visa.png" width="80px"></img>
-                                        </div>
-                                    </div>
+                    <div className="App-cards">
+                        <div className="App-cards-list">
+                            {cartoes.map((cartao) => (
+                                <div
+                                    key={cartao.cartao_id}
+                                    onMouseOver={() => {
+                                        setFocusedCard(cartao.cartao_id);
+                                        console.log(focusedCard);
+                                        setTimeout(() => {
+                                            setShowButton(cartao.cartao_id);
+                                        }, 100);
+                                    }}
+                                    onMouseOut={() => {
+                                        setFocusedCard(null);
+                                        setTimeout(() => {
+                                            setShowButton(null);
+                                        }, 100);
+                                    }}
+                                >
+                                    <Cards number={cartao.number} expiry={cartao.expiry} name={cartao.name} cvc={cartao.cvc} focused={focusedCard === cartao.cartao_id ? "cvc" : ""} />
+                                    {/* /.DELET DOS CARTOES */}
+                                    {showButton === cartao.cartao_id ? (
+                                        <button
+                                            type="button"
+                                            className="btn btn-danger fixed-top deletButton"
+                                            onClick={() => {
+                                                console.log("Button clicked");
+                                                deleteCard(cartao.cartao_id);
+                                            }}
+                                        >
+                                            Excluir
+                                        </button>
+                                    ) : null}
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
-
                     {/* /.card */}
                 </section>
                 {/* /.content */}
