@@ -1,8 +1,20 @@
 import Footer from "../Components/Footer";
 import SideBar from "../Components/SideBar";
 import TopBar from "../Components/TopBar";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 export default function Dashboard() {
+    const [cartoes, setCartoes] = useState([]);
+
+    const getCartoes = async () => {
+        const res = await axios.get(`http://54.207.8.179:8081/cartoes/${localStorage.getItem("usuario_id")}`);
+        setCartoes(res.data);
+    };
+
+    useEffect(() => {
+        getCartoes();
+    });
     return (
         <div className="wrapper">
             <TopBar />
@@ -40,9 +52,9 @@ export default function Dashboard() {
                                 {/* small box */}
                                 <div className="small-box bg-info">
                                     <div className="inner">
-                                        <h3>1</h3>
+                                        <h3>{cartoes.length}</h3>
 
-                                        <p>Cartão Cadastrado</p>
+                                        <p>Cartão(ões) Cadastrado(s)</p>
                                     </div>
                                     <div className="icon">
                                         <i className="ion ion-bag"></i>

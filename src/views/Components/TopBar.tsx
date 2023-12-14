@@ -11,7 +11,7 @@ export default function TopBar() {
                     </a>
                 </li>
                 <li className="nav-item d-none d-sm-inline-block">
-                    <Link to="/" className="nav-link">
+                    <Link to="/dashboard" className="nav-link">
                         Dashboard
                     </Link>
                 </li>
