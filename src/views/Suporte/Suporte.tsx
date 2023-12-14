@@ -28,7 +28,7 @@ export default function Suporte() {
             .then(function (response) {
                 alert(response.data);
             });
-        navigate("/");
+        navigate("/dashboard");
     }
     return (
         <>
